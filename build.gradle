@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.7.17-SNAPSHOT'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+group = 'com.alklid.batch'
+version = "${BUILD_VERSION}"
+
+java {
+    sourceCompatibility = '11'
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://repo.spring.io/milestone' }
+    maven { url 'https://repo.spring.io/snapshot' }
+}
+
+dependencies {
+    // spring batch
+    implementation('org.springframework.boot:spring-boot-starter-batch')
+
+    // jdbc
+    implementation('com.h2database:h2')
+
+    // lombok
+    compileOnly ('org.projectlombok:lombok')
+    annotationProcessor ('org.projectlombok:lombok')
+    annotationProcessor('org.springframework.boot:spring-boot-configuration-processor')
+
+    // util
+    implementation('org.apache.commons:commons-lang3')
+
+    // test
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    testImplementation('org.springframework.batch:spring-batch-test')
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

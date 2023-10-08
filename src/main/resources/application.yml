@@ -1,0 +1,27 @@
+spring:
+  # Batch job config
+  batch:
+    datasource:
+      hikari:
+        driver-class-name: org.h2.Driver
+        jdbc-url: jdbc:h2:mem:inMemoryBatchDB;INIT=runscript from 'classpath:/org/springframework/batch/core/schema-h2.sql'
+        username: SA
+        password:
+        minimum-idle: 1
+        maximum-pool-size: 2
+        pool-name: alklid_batch_db_pool
+    job:
+      enabled: false
+
+# Log level config
+logging:
+  level:
+    com.alklid.batch: DEBUG
+  file:
+    path: ./logs
+    name: ./logs/snapshot-labeling
+
+# snapshot config
+snapshot:
+  source: /Users/alklid/Snapshot/tmp/source
+  target: /Users/alklid/Snapshot/tmp/target

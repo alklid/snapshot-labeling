@@ -1,27 +1,24 @@
 package com.alklid.batch.job.processor;
 
+import com.alklid.batch.model.data.SnapshotFile;
 import com.alklid.batch.prop.SnapshotProps;
-import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.item.ItemProcessor;
 
-import java.io.File;
-
 @Slf4j
-public class SnapshotLabelingProcessor implements ItemProcessor<File, File> {
+@RequiredArgsConstructor
+public class SnapshotLabelingProcessor implements ItemProcessor<SnapshotFile, SnapshotFile> {
 
-    private SnapshotProps snapshotProps;
-
+    private final SnapshotProps snapshotProps;
 
     @Override
-    public File process(@NonNull File item) {
-        log.info("[PROCESSOR] item : {}", item.getAbsolutePath());
+    public SnapshotFile process(final SnapshotFile item) {
+        // 파일의 생성일 구하기
+        item.labeling();
+
+        log.info("[PROCESSOR] ({}) : {}", item.getDateLabel(), item.getPath().toString());
         return item;
-    }
-
-
-    public void setSnapshotProps(final SnapshotProps snapshotProps) {
-        this.snapshotProps = snapshotProps;
     }
 
 }

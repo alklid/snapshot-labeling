@@ -15,6 +15,36 @@ repositories {
     mavenCentral()
 }
 
+sourceSets {
+    if (!project.hasProperty('CONFIG_NAME') || !CONFIG_NAME) {
+        ext.CONFIG_NAME = 'local'
+    }
+
+    generated {
+        java {
+            srcDirs =  [ "src/main/generated"]
+        }
+    }
+
+    main {
+        java { srcDirs "src/main/java" }
+        resources {
+            srcDirs "src/main/resources", "src/main/resources-env/${CONFIG_NAME}"
+        }
+    }
+}
+
+processResources {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+
+    filesMatching([
+            'application.yml',
+            'application-*.yml'
+    ]) {
+        expand(project.properties)
+    }
+}
+
 dependencies {
     // spring batch
     implementation('org.springframework.boot:spring-boot-starter-batch')
@@ -30,6 +60,12 @@ dependencies {
     // util
     implementation('org.apache.commons:commons-lang3')
     implementation('commons-io:commons-io:2.16.1')
+    implementation('org.apache.commons:commons-imaging:1.0.0-alpha5')
+    implementation('com.drewnoakes:metadata-extractor:2.19.0')
+
+    // sentry
+    implementation('io.sentry:sentry-spring-boot-starter-jakarta:7.9.0')
+    implementation('io.sentry:sentry-logback:7.9.0')
 
     // test
     testImplementation('org.springframework.boot:spring-boot-starter-test')

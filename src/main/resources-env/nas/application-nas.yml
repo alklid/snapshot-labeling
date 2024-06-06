@@ -1,0 +1,4 @@
+# snapshot config
+snapshot:
+  source: /Users/chris/Snapshot/source
+  target: /Users/chris/Snapshot/target

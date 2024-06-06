@@ -12,7 +12,14 @@ logging:
     path: ./logs
     name: ./logs/snapshot-labeling
 
-# snapshot config
-snapshot:
-  source: /Users/chris/Snapshot/tmp/source
-  target: /Users/chris/Snapshot/tmp/target
+# Sentry
+sentry:
+  dsn: ${SENTRY_DSN}
+  release: ${BUILD_VERSION}
+  environment: ${CONFIG_NAME}
+  enable-tracing: true
+  send-default-pii: false # 사용자 정보 기록
+  logging: # 범위
+    minimum-event-level: "WARN"
+    minimum-breadcrumb-level: "INFO"
+  sample-rate: 1

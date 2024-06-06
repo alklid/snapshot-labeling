@@ -5,6 +5,7 @@ import com.alklid.batch.job.processor.SnapshotLabelingProcessor;
 import com.alklid.batch.job.writer.SnapshotLabelingWriter;
 import com.alklid.batch.model.data.SnapshotFile;
 import com.alklid.batch.prop.SnapshotProps;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.batch.core.Job;
@@ -39,16 +40,13 @@ import static com.alklid.batch.Constant.Batch.SNAPSHOT_LABELING_STEP;
 @Configuration
 @EnableBatchProcessing
 @Import(InMemoryDataSourceConfiguration.class)
+@RequiredArgsConstructor
 @Slf4j
 public class SnapshotLabelingJobConfig {
 
     private static final int CHUNK_SIZE             = 100;
 
     private final SnapshotProps snapshotProps;
-
-    public SnapshotLabelingJobConfig(SnapshotProps snapshotProps) {
-        this.snapshotProps = snapshotProps;
-    }
 
 
     @Bean(name = SNAPSHOT_LABELING_JOB)

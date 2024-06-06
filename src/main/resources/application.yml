@@ -16,6 +16,11 @@ logging:
     path: ./logs
     name: ./logs/snapshot-labeling
 
+# snapshot config
+snapshot:
+  # 1(metadata), 2(file name pattern)
+  date-extract-type: 1
+
 # Sentry
 sentry:
   dsn: ${SENTRY_DSN}

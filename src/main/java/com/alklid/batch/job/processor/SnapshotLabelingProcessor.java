@@ -20,7 +20,7 @@ public class SnapshotLabelingProcessor implements ItemProcessor<SnapshotFile, Sn
         //  파일명 기반으로 생성일 설정 예) yyyyMMdd_*.jpg 이면 앞의 yyyyMMdd 패턴으로 생성일을 설정
 
         // 파일의 생성일 구하기
-        item.dateLabeling();
+        item.dateLabeling(snapshotProps.getDateExtractType());
 
         log.info("[PROCESSOR] Labeling({}) : {}",
             item.getDateLabel().format(new DateTimeFormatterBuilder().appendPattern("yyyy-MM-dd").toFormatter()),

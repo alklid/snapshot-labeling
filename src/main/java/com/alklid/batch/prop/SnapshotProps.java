@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 @Setter
 public class SnapshotProps {
 
+    private Integer dateExtractType;
     private String source;
     private String target;
 

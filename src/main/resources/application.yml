@@ -1,4 +1,8 @@
 spring:
+  # profile
+  config:
+    activate:
+      on-profile: ${CONFIG_NAME}
   # Batch job config
   batch:
     job:

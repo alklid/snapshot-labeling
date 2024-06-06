@@ -3,7 +3,7 @@ package com.alklid.batch;
 public class Constant {
     public static final class Char {
         public static final String COMMA                                = ",";
-        public static final String DASH                                 = "-";
+        public static final String DOT                                  = ".";
     }
 
     public static final class Value {

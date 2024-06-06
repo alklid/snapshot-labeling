@@ -1,5 +1,5 @@
 # snapshot config
 snapshot:
-  date-extract-type: 2
+  date-extract-type: 1
   source: /Users/chris/Snapshot/source
   target: /Users/chris/Snapshot/target
